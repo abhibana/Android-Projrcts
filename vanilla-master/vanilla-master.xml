@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="vanilla-master" default="all">
+  
+  
+  <property file="vanilla-master.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_api_16_platform" value="${jdk.home.android_api_16_platform}/../../../../../../usr/java/jdk1.7.0_60/bin"/>
+  <path id="jdk.classpath.android_api_16_platform">
+    <fileset dir="${jdk.home.android_api_16_platform}">
+      <include name="platforms/android-16/android.jar"/>
+      <include name="platforms/android-16/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value=""/>
+  <property name="project.jdk.bin" value=""/>
+  <property name="project.jdk.classpath" value=""/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module vanilla-master -->
+  
+  <dirname property="module.vanilla-master.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.vanilla-master" value="${jdk.home.android_api_16_platform}"/>
+  <property name="module.jdk.bin.vanilla-master" value="${jdk.bin.android_api_16_platform}"/>
+  <property name="module.jdk.classpath.vanilla-master" value="jdk.classpath.android_api_16_platform"/>
+  
+  <property name="compiler.args.vanilla-master" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="vanilla-master.output.dir" value="${module.vanilla-master.basedir}/../../../../production/vanilla-master"/>
+  <property name="vanilla-master.testoutput.dir" value="${module.vanilla-master.basedir}/../../../../test/vanilla-master"/>
+  
+  <path id="vanilla-master.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="vanilla-master.module.production.classpath">
+    <path refid="${module.jdk.classpath.vanilla-master}"/>
+  </path>
+  
+  <path id="vanilla-master.runtime.production.module.classpath">
+    <pathelement location="${vanilla-master.output.dir}"/>
+  </path>
+  
+  <path id="vanilla-master.module.classpath">
+    <path refid="${module.jdk.classpath.vanilla-master}"/>
+    <pathelement location="${vanilla-master.output.dir}"/>
+  </path>
+  
+  <path id="vanilla-master.runtime.module.classpath">
+    <pathelement location="${vanilla-master.testoutput.dir}"/>
+    <pathelement location="${vanilla-master.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.vanilla-master">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.vanilla-master">
+    <patternset refid="excluded.from.module.vanilla-master"/>
+  </patternset>
+  
+  <path id="vanilla-master.module.sourcepath">
+    <dirset dir="${module.vanilla-master.basedir}">
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.vanilla-master" depends="compile.module.vanilla-master.production,compile.module.vanilla-master.tests" description="Compile module vanilla-master"/>
+  
+  <target name="compile.module.vanilla-master.production" depends="register.custom.compilers" description="Compile module vanilla-master; production classes">
+    <mkdir dir="${vanilla-master.output.dir}"/>
+    <javac2 destdir="${vanilla-master.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.vanilla-master}/javac">
+      <compilerarg line="${compiler.args.vanilla-master}"/>
+      <bootclasspath refid="vanilla-master.module.bootclasspath"/>
+      <classpath refid="vanilla-master.module.production.classpath"/>
+      <src refid="vanilla-master.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.vanilla-master"/>
+    </javac2>
+    
+    <copy todir="${vanilla-master.output.dir}">
+      <fileset dir="${module.vanilla-master.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.vanilla-master.tests" depends="register.custom.compilers,compile.module.vanilla-master.production" description="compile module vanilla-master; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.vanilla-master" description="cleanup module">
+    <delete dir="${vanilla-master.output.dir}"/>
+    <delete dir="${vanilla-master.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.vanilla-master" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.vanilla-master" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

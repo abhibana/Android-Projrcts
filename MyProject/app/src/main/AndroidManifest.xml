@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.practice.compass.myproject" >
+    
+    <uses-permission android:name="android.permission.SET_WALLPAPER"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-sdk android:minSdkVersion="2.0" android:targetSdkVersion="4.4.4"></uses-sdk>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/launcher_icon"
+        android:theme="@style/AppTheme"  >
+
+        <activity
+            android:name=".Splash"
+            android:label="Welcome"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Menu"
+            android:label="Menu"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo">
+        </activity>
+
+        <activity
+            android:name=".Count"
+            android:label="Try your counting" >
+        </activity>
+
+        <activity
+            android:name=".TextPlay"
+            android:label="Enter your command"
+            android:screenOrientation="portrait"  >
+        </activity>
+
+        <activity
+            android:name=".Email"
+            android:label="Email Details"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Call"
+            android:label="Call To Connect"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Photo"
+            android:label="Click and Edit Photo"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Get"
+            android:label="Click and Edit Photo"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Send"
+            android:label="Click and Edit Photo"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".About"
+            android:label="About us"
+            android:theme="@android:style/Theme.Holo.Dialog">
+        </activity>
+
+        <activity
+            android:name=".Prefs"
+            android:label="Preferences"
+            android:theme="@android:style/Theme.Holo.Dialog">
+        </activity>
+
+        <activity
+            android:name=".GFX"
+            android:label="Graphics" >
+            <intent-filter>
+                <action android:name="com.practice.compass.myproject.GFX" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Browser"
+            android:label="Browser" >
+        </activity>
+
+        <activity
+            android:name=".Tabs"
+            android:label="Tabs" >
+        </activity>
+
+        <activity
+            android:name=".SpeakOut"
+            android:label="Speaking Phone" >
+        </activity>
+
+        <activity
+            android:name=".Notification"
+            android:label="Try Notification" >
+        </activity>
+
+        <activity
+            android:name=".ListSongs"
+            android:label="Songs"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo">
+        </activity>
+
+        <activity
+            android:name=".Sound"
+            android:label="Music Player"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".VideoList"
+            android:label="Videos"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo">
+        </activity>
+
+        <activity
+            android:name=".Video"
+            android:label="Video Player"
+            android:screenOrientation="landscape">
+        </activity>
+
+    </application>
+
+</manifest>
+
+
